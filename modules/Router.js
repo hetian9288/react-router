@@ -20,16 +20,16 @@ function isUnsupportedHistory(history) {
   return history && history.getCurrentLocation
 }
 
-const { func, object } = React.PropTypes
+import { func, object } from 'prop-types';
 
 /**
  * A <Router> is a high-level API for automatically setting up
  * a router that renders a <RouterContext> with all the props
  * it needs each time the URL changes.
  */
-const Router = React.createClass({
+class Router extends React.Component{
 
-  propTypes: {
+  static propTypes= {
     history: object,
     children: routes,
     routes, // alias for children
@@ -44,24 +44,20 @@ const Router = React.createClass({
 
     // PRIVATE: For client-side rehydration of server match.
     matchContext: object
-  },
+  }
 
-  getDefaultProps() {
-    return {
+  static defaultProps = {
       render(props) {
-        return <RouterContext {...props} />
+          return <RouterContext {...props} />
       }
-    }
-  },
+  }
 
-  getInitialState() {
-    return {
+  state = {
       location: null,
       routes: null,
       params: null,
       components: null
-    }
-  },
+  }
 
   handleError(error) {
     if (this.props.onError) {
@@ -70,7 +66,7 @@ const Router = React.createClass({
       // Throw errors by default so we don't silently swallow them!
       throw error // This error probably occurred in getChildRoutes or getComponents.
     }
-  },
+  }
 
   componentWillMount() {
     const { parseQueryString, stringifyQuery } = this.props
@@ -91,7 +87,7 @@ const Router = React.createClass({
 
     this.history = history
     this.router = router
-  },
+  }
 
   createRouterObjects() {
     const { matchContext } = this.props
@@ -120,7 +116,7 @@ const Router = React.createClass({
     const routingHistory = createRoutingHistory(history, transitionManager)
 
     return { history: routingHistory, transitionManager, router }
-  },
+  }
 
   wrapDeprecatedHistory(history) {
     const { parseQueryString, stringifyQuery } = this.props
@@ -137,7 +133,7 @@ const Router = React.createClass({
     }
 
     return useQueries(createHistory)({ parseQueryString, stringifyQuery })
-  },
+  }
 
   /* istanbul ignore next: sanity check */
   componentWillReceiveProps(nextProps) {
@@ -151,12 +147,12 @@ const Router = React.createClass({
         (this.props.routes || this.props.children),
       'You cannot change <Router routes>; it will be ignored'
     )
-  },
+  }
 
   componentWillUnmount() {
     if (this._unlisten)
       this._unlisten()
-  },
+  }
 
   render() {
     const { location, routes, params, components } = this.state
@@ -181,6 +177,6 @@ const Router = React.createClass({
     })
   }
 
-})
+}
 
 export default Router

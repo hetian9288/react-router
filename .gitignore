@@ -7,3 +7,8 @@ npm-debug.log
 website/index.html
 website/tags/*
 coverage
+.idea
+.idea/inspectionProfiles/
+.idea/modules.xml
+.idea/react-router.iml
+.idea/workspace.xml

@@ -1,10 +1,9 @@
-import { PropTypes } from 'react'
 
 import deprecateObjectProperties from './deprecateObjectProperties'
 import * as InternalPropTypes from './InternalPropTypes'
 import warning from './routerWarning'
 
-const { func, object, shape, string } = PropTypes
+import { func, object, shape, string } from 'prop-types'
 
 export const routerShape = shape({
   push: func.isRequired,

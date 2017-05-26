@@ -76,6 +76,7 @@
     "pretty-bytes": "^3.0.1",
     "qs": "^6.2.1",
     "react": "^15.3.0",
+    "prop-types": "^15.5.x",
     "react-addons-css-transition-group": "^15.3.0",
     "react-addons-test-utils": "^15.3.0",
     "react-dom": "^15.3.0",
